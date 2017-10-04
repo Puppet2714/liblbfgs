@@ -1,0 +1,16 @@
+# - Config file for the lbfgs package
+# It defines the following variables
+#  LBFGS_INCLUDE_DIRS - include directories for lbfgs
+#  LBFGS_LIBRARIES    - libraries to link against
+
+# Compute paths
+get_filename_component(LBFGS_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(LBFGS_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET lbfgs AND NOT lbfgs_BINARY_DIR)
+  include("${LBFGS_CMAKE_DIR}/lbfgs-targets.cmake")
+endif()
+
+# These are IMPORTED targets created by lbfgsTargets.cmake
+set(LBFGS_LIBRARIES lbfgs)
